@@ -1,17 +1,15 @@
-pipeline {
-	
-	agent any
-	stages{
-		stage("Build"){
-		steps{
-		echo "Hello World"
-		sh './hello.sh'
-		}}
-	
-
-		stage("Test"){
-		steps{
-		echo "Testing"
-		}}
-	}
+node {
+    stage('Build') {
+        echo 'Building....'
+	sh './hello.sh'
+    }
+    stage('Test') {
+        echo 'Testing....'
+    }
+    stage('Deploy') {
+        echo 'Deploying....'
+	if (currentBuild.result == null || currentBuild.result == 'SUCCESS') { 
+            echo 'Deploy Success'
+        }
+    }
 }
