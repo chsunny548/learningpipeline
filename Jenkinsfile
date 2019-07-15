@@ -1,11 +1,17 @@
-node {
-    stage('Build') {
-        echo 'Building....'
-    }
-    stage('Test') {
-        echo 'Testing....'
-    }
-    stage('Deploy') {
-        echo 'Deploying....'
-    }
+pipeline {
+	
+	agent any
+	stages{
+		stage("Build"){
+		steps{
+		echo "Hello World"
+		sh hello.sh
+		}}
+	
+
+		stage("Test"){
+		steps{
+		echo "Testing"
+		}}
+	}
 }
