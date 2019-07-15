@@ -8,7 +8,7 @@ node {
     }
     stage('Deploy') {
         echo 'Deploying....'
-	if (currentBuild.result == 'SUCCESS') { 
+	if (currentBuild.result == null || currentBuild.result == 'SUCCESS') { 
             echo currentBuild.result
         }
     }
