@@ -1,6 +1,8 @@
 properties([parameters([string(defaultValue: 'Hello', description: 'How should I greet the world?', name: 'Greeting')])])
 node {
-    
+    stage('Checkout'){
+	checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/chsunny548/learningpipeline.git']]])
+	}
     stage('Build') {
         echo 'Building....'
 	sh './hello.sh'
