@@ -5,7 +5,7 @@ node {
     stage('Build') {
         echo 'Building....'
 	sh './hello.sh'
-	echo "$CRED"
+	echo "$CREDS"
 	echo "Build id is $env.BUILD_ID \n Job name is $env.JOB_NAME"
     }
     stage('Test') {
