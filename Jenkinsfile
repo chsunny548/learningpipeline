@@ -5,7 +5,7 @@ node {
 	}
     stage('Build') {
         echo 'Building....'
-	sh './hello.sh'
+
 	echo "Build id is $env.BUILD_ID \n Job name is $env.JOB_NAME"
 	echo "$Greeting"
 	sh 'mvn -B -DskipTests clean package'
