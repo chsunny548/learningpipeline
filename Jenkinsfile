@@ -20,8 +20,11 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
 }
     stage('Test') {
 	node {
-        echo 'Testing....'
-/*	unstash 'app'*/
+     docker.image('node:7-alpine').inside {
+        
+            sh 'node --version'
+        
+    }	
     }}
     stage('Deploy') {
         node {
