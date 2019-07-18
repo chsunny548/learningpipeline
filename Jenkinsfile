@@ -15,7 +15,7 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
 		mvn -B -DskipTests clean package
 	"""
 	}
-	/*stash includes: '**/target/*.jar', name: 'app'*/
+	stash includes: '**/target/*.jar', name: 'app'*/
     }}
     stage('Test') {
 	node {
