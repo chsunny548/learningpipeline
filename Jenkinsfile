@@ -49,4 +49,4 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
 		sh 'java -jar ./target/*.jar'
         }
     }}
-i
+
