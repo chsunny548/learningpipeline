@@ -12,7 +12,7 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
 	    sh 'mvn -B -DskipTests clean package'
         
     }
-    	
+	stash includes: '**/target/*.jar', name: 'app'
 }
 
 
