@@ -39,6 +39,7 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
 	    sh 'mvn test'
         
     }
+	junit '**/target/*.xml'
 
 }
     stage('Deploy') {
