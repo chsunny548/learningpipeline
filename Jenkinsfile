@@ -20,7 +20,7 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
 }
     stage('Test') {
 	node {
-     docker.image('mvn:3-alpine').inside('-v /var/jenkins_home/workspace/learningpipeline:/app -w /app') {
+     docker.image('maven:3-alpine').inside('-v /var/jenkins_home/workspace/learningpipeline:/app -w /app') {
         
             sh 'mvn --version'
 	    sh 'mvn -B -DskipTests clean package'
