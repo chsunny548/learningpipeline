@@ -10,12 +10,6 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
 
 	echo "Build id is $env.BUILD_ID \n Job name is $env.JOB_NAME"
 	echo "$Greeting"
-/*	withMaven() {
-	   sh """
-		mvn -B -DskipTests clean package
-	"""
-	}
-	stash includes: '**/target/*.jar', name: 'app'*/
     }}
     stage('Test') {
 	node {
