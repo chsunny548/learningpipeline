@@ -1,0 +1,11 @@
+properties([parameters([string(defaultValue: "hello", description: "Grreting", name: "Greeting")])])
+
+node {
+	stage('checkout'){
+	checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteCongif: [url: '']]])
+	}
+	stage('Build'){
+	echo 'Hi'
+	}
+
+}
