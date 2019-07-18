@@ -20,9 +20,11 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
 }
     stage('Test') {
 	node {
-     docker.image('node:7-alpine').inside {
+     docker.image('node:7-alpine').inside('-w /app') {
         
             sh 'node --version'
+	    git clone https://github.com/chsunny548/simple-java-maven-app.git
+	    sh 'mvn -B -DskipTests clean package'
         
     }	
     }}
@@ -33,4 +35,4 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
             echo currentBuild.result
         }
     }}
-
+i
