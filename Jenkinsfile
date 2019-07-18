@@ -5,6 +5,20 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
 	checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/chsunny548/simple-java-maven-app.git']]])
 	}}
     stage('Build') {
+     node {
+     docker.image('maven:3-alpine').inside('-v /var/jenkins_home/workspace/learningpipeline:/app -w /app') {
+        
+            sh 'mvn --version'
+	    sh 'mvn -B -DskipTests clean package'
+        
+    }
+    	
+}
+
+
+}
+    stage('Test') {
+	
 	parallel linux:{
 	node{
         echo 'Building....'
@@ -15,18 +29,8 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
 	 windows: {
 	node{
 	echo 'Hekki'
-	}}
-
+      }}
 }
-    stage('Test') {
-	node {
-     docker.image('maven:3-alpine').inside('-v /var/jenkins_home/workspace/learningpipeline:/app -w /app') {
-        
-            sh 'mvn --version'
-	    sh 'mvn -B -DskipTests clean package'
-        
-    }	
-    }}
     stage('Deploy') {
         node {
         echo 'Deploying....'
@@ -34,4 +38,4 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
             echo currentBuild.result
         }
     }}
-i
+
