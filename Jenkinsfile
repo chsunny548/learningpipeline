@@ -12,6 +12,7 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
 	    sh 'mvn -B -DskipTests clean package'
         
     }
+
 	stash includes: '**/target/*.jar', name: 'app'
 }
 
@@ -30,13 +31,22 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
 	node{
 	echo 'Hekki'
       }}
+
+	
+     docker.image('maven:3-alpine').inside('-v /var/jenkins_home/workspace/learningpipeline:/app -w /app') {
+        
+            sh 'mvn --version'
+	    sh 'mvn test'
+        
+    }
+
 }
     stage('Deploy') {
         node {
         echo 'Deploying....'
 	if (currentBuild.result == null || currentBuild.result == 'SUCCESS') { 
             echo currentBuild.result
-		java -jar **/target/*.jar
+		sh 'java -jar **/target/*.jar'
         }
     }}
 
