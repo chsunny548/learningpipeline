@@ -8,7 +8,11 @@ node {
 
 	echo "Build id is $env.BUILD_ID \n Job name is $env.JOB_NAME"
 	echo "$Greeting"
-	sh 'mvn -B -DskipTests clean package'
+	withMaven() {
+   sh """
+mvn -B -DskipTests clean package
+"""
+}
     }
     stage('Test') {
         echo 'Testing....'
