@@ -46,7 +46,7 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
         echo 'Deploying....'
 	if (currentBuild.result == null || currentBuild.result == 'SUCCESS') { 
             echo currentBuild.result
-		sh 'java -jar **/target/*.jar'
+		sh 'java -jar ./target/*.jar'
         }
     }}
-
+i
