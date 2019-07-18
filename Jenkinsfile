@@ -23,7 +23,6 @@ properties([parameters([string(defaultValue: 'Hello', description: 'How should I
      docker.image('node:7-alpine').inside('-v /var/jenkins_home/workspace/learningpipeline:/app -w /app') {
         
             sh 'node --version'
-	    sh 'git clone https://github.com/chsunny548/simple-java-maven-app.git .'
 	    sh 'mvn -B -DskipTests clean package'
         
     }	
