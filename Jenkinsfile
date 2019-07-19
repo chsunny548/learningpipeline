@@ -22,8 +22,10 @@ stage('Build'){
 	sh 'mvn -B -DskipTests clean package'
 	sh 'mvn test'
 	}
-	archiveArtifacts '**/target/**/*.jar'
+	node {
+	archiveArtifacts '**/target/*.jar'
 	junit '**/target/**/*.xml'
+	}
 }
 stage('Deploy'){
 	node{
