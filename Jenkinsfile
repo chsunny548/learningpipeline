@@ -18,7 +18,7 @@ stage('Build'){
 		echo env.JOB_NAME
 	}
 	}
-	docker.image('maven:3-alpine').inside(-v /var/jenkins_home/workspace/env.JOB_NAME:/app -w /app){
+	docker.image('maven:3-alpine').inside('-v /var/jenkins_home/workspace/env.JOB_NAME:/app -w /app'){
 	maven -B -DskipTests clean package
 	}
 }
