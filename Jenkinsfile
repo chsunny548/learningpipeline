@@ -20,11 +20,13 @@ stage('Build'){
 	}
 	docker.image('maven:3-alpine').inside('-v /var/jenkins_home/workspace/env.JOB_NAME:/app -w /app'){
 	sh 'mvn -B -DskipTests clean package'
+	sh 'mvn test'
 	}
-	archiveArtifacts '**/*.jar'
+	archiveArtifacts '**/target/**/*.jar'
+	junit '**/target/**/*.xml'
 }
 stage('Deploy'){
 	node{
-	sh 'java -jar **/*.jar'
+	sh 'java -jar ./target/*.jar'
 	}
 }
